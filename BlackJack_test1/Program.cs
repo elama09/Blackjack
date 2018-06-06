@@ -65,20 +65,6 @@ namespace BlackJack_test1
             Console.WriteLine();
 
             HaluatkoTuplata(pe, ja, pakka); //Pelaajan vuoro/Tuplaus
-            //Console.WriteLine("Haluatko tuplata?\nY = Yes\nN = No");
-            //vääräkomento:
-            //string tuplausKomento = Console.ReadLine();
-            //if (tuplausKomento.Equals("y", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    Console.WriteLine();
-            //    Tuplaus(pe, ja, pakka);
-            //}
-            //else if (!tuplausKomento.Equals("n", StringComparison.OrdinalIgnoreCase))
-            //{
-            //    Console.WriteLine("Tuntematon komento, yritä uudelleen!");
-            //    goto vääräkomento;
-            //}
-            //Console.WriteLine();
 
             //Pelaajan vuoro
             PelaajanVuoro(pe, pakka);
@@ -195,6 +181,7 @@ namespace BlackJack_test1
 
         public static void KumpiVoitti(Käsi pe, Käsi ja)
         {
+            System.Threading.Thread.Sleep(2000);
             if (pe.KadenArvo > ja.KadenArvo)
             {
                 Console.WriteLine("Sinä voitit! Onneksi olkoon!");
@@ -334,8 +321,8 @@ namespace BlackJack_test1
                     break;
                 }
             }
-
-            JakajanVuoro();
+            //Tähän vielä jatko koodia
+            
 
 
         }
