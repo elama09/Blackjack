@@ -29,6 +29,8 @@ namespace BlackJack_test1
         {
             //Kysytään monta pakkaa pelaaja haluaa luoda, ja luodaan ne
             //int pakkojenMaara = int.Parse(Console.ReadLine());
+
+
             Korttipakka pakka = new Korttipakka(pakkojenMaara);
             Käsi pe = new Käsi();
             Käsi ja = new Käsi();

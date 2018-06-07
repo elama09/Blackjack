@@ -10,7 +10,7 @@ namespace BlackJack_test1
     public class Korttipakka : IEnumerable
     {
         public const int KORTTEJA_YHTEENSA = 52;
-        public Random random = new Random();
+        public Random random = new Random(DateTime.Now.Millisecond);
         public List<Kortti> PakkaList { get; set; }
         public static int PakkojenMaara { get; set; }
 
