@@ -11,6 +11,7 @@ namespace BlackJack_test1
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             //Alku käynnistys niin saadaan samalla monella pakalla halutaan pelata
             Console.WriteLine("*****Tervetuloa pelaamaan BlackJack-pelia!*****\n");
             int pakkojenmaara = PelinToiminnot.Montapakkaa();
@@ -24,14 +25,24 @@ namespace BlackJack_test1
         public static int pelaajanVoitot = 0;
         public static int jakajanVoitot = 0;
         public static int tasapelit = 0;
-
+        public static bool OnkoTarpeeksiKorttejaPakassa(Korttipakka p)
+        {
+            if (p.PakkaList.Count < (Korttipakka.PakkojenMaara * 52 / 5))
+            {
+                Korttipakka pakka = new Korttipakka(Korttipakka.PakkojenMaara);
+                
+            }
+            return true;
+        }
         public static void KaynnistaPeli(int pakkojenMaara) // Tai muuta tälläistä
         {
             //Kysytään monta pakkaa pelaaja haluaa luoda, ja luodaan ne
             //int pakkojenMaara = int.Parse(Console.ReadLine());
 
+            
 
             Korttipakka pakka = new Korttipakka(pakkojenMaara);
+
             Käsi pe = new Käsi();
             Käsi ja = new Käsi();
 

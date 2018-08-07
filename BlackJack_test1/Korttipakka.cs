@@ -13,7 +13,7 @@ namespace BlackJack_test1
         public Random random = new Random(DateTime.Now.Millisecond);
         public List<Kortti> PakkaList { get; set; }
         public static int PakkojenMaara { get; set; }
-
+        
         public Korttipakka(int montaPakkaa) //Tähän voi lisätä parametsiksi, kuinka monta pakkaa haluat tehdä. Sit 2 looppia x - 13.
         {
             PakkaList = new List<Kortti>();
@@ -26,34 +26,34 @@ namespace BlackJack_test1
                     switch (i)
                     {
                         case 11:
-                            PakkaList.Add(new Kortti("Hertta Jätkä", 10));
-                            PakkaList.Add(new Kortti("Risti Jätkä", 10));
-                            PakkaList.Add(new Kortti("Ruutu Jätkä", 10));
-                            PakkaList.Add(new Kortti("Pata Jätkä", 10));
+                            PakkaList.Add(new Kortti("♥ Jätkä", 10));
+                            PakkaList.Add(new Kortti("♣ Jätkä", 10));
+                            PakkaList.Add(new Kortti("♦ Jätkä", 10));
+                            PakkaList.Add(new Kortti("♠ Jätkä", 10));
                             break;
                         case 12:
-                            PakkaList.Add(new Kortti("Hertta Akka", 10));
-                            PakkaList.Add(new Kortti("Risti Akka", 10));
-                            PakkaList.Add(new Kortti("Ruutu Akka", 10));
-                            PakkaList.Add(new Kortti("Pata Akka", 10));
+                            PakkaList.Add(new Kortti("♥ Akka", 10));
+                            PakkaList.Add(new Kortti("♣ Akka", 10));
+                            PakkaList.Add(new Kortti("♦ Akka", 10));
+                            PakkaList.Add(new Kortti("♠ Akka", 10));
                             break;
                         case 13:
-                            PakkaList.Add(new Kortti("Hertta Kunkku", 10));
-                            PakkaList.Add(new Kortti("Risti Kunkku", 10));
-                            PakkaList.Add(new Kortti("Ruutu Kunkku", 10));
-                            PakkaList.Add(new Kortti("Pata Kunkku", 10));
+                            PakkaList.Add(new Kortti("♥ Kunkku", 10));
+                            PakkaList.Add(new Kortti("♣ Kunkku", 10));
+                            PakkaList.Add(new Kortti("♦ Kunkku", 10));
+                            PakkaList.Add(new Kortti("♠ Kunkku", 10));
                             break;
                         case 14:
-                            PakkaList.Add(new Kortti("Hertta Ässä", 11));
-                            PakkaList.Add(new Kortti("Risti Ässä", 11));
-                            PakkaList.Add(new Kortti("Ruutu Ässä", 11));
-                            PakkaList.Add(new Kortti("Pata Ässä", 11));
+                            PakkaList.Add(new Kortti("♥ Ässä", 11));
+                            PakkaList.Add(new Kortti("♣ Ässä", 11));
+                            PakkaList.Add(new Kortti("♦ Ässä", 11));
+                            PakkaList.Add(new Kortti("♠ Ässä", 11));
                             break;
                         default:
-                            PakkaList.Add(new Kortti("Hertta", i));
-                            PakkaList.Add(new Kortti("Risti", i));
-                            PakkaList.Add(new Kortti("Ruutu", i));
-                            PakkaList.Add(new Kortti("Pata", i));
+                            PakkaList.Add(new Kortti("♥", i));
+                            PakkaList.Add(new Kortti("♣", i));
+                            PakkaList.Add(new Kortti("♦", i));
+                            PakkaList.Add(new Kortti("♠", i));
                             break;
                     }
                 }
