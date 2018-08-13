@@ -12,37 +12,39 @@ namespace BlackJack_test1
         public static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            //Alku käynnistys niin saadaan samalla monella pakalla halutaan pelata
             Console.WriteLine("*****Tervetuloa pelaamaan BlackJack-pelia!*****\n");
-            int pakkojenmaara = PelinToiminnot.Montapakkaa();
-
-            PelinToiminnot.KaynnistaPeli(pakkojenmaara);
+            PelinToiminnot.KaynnistaPeli();
         }
     }
 
     public static class PelinToiminnot // Engine luokka..?
     {
+        public static Korttipakka pakka;
         public static int pelaajanVoitot = 0;
         public static int jakajanVoitot = 0;
         public static int tasapelit = 0;
-        public static bool OnkoTarpeeksiKorttejaPakassa(Korttipakka p)
+
+        public static Korttipakka TäytyyköLuodaUusiPakka(Korttipakka p)
         {
-            if (p.PakkaList.Count < (Korttipakka.PakkojenMaara * 52 / 5))
+            if (p == null)
             {
-                Korttipakka pakka = new Korttipakka(Korttipakka.PakkojenMaara);
-                
+                pakka = new Korttipakka(Montapakkaa());
+                return pakka;
             }
-            return true;
+            else if (p.PakkaList.Count < (Korttipakka.PakkojenMaara * 52 / 5))
+            {
+                Console.WriteLine("\nKorttipakka melkein lopussa.. Sekoitetaan pakka..\n");
+                pakka = new Korttipakka(Montapakkaa());
+                return pakka;
+            }
+            return p;
         }
-        public static void KaynnistaPeli(int pakkojenMaara) // Tai muuta tälläistä
+        public static void KaynnistaPeli() // Tai muuta tälläistä
         {
-            //Kysytään monta pakkaa pelaaja haluaa luoda, ja luodaan ne
-            //int pakkojenMaara = int.Parse(Console.ReadLine());
+            //Luodaan uusi pakka / tai jos liian vähän kortteja
+            pakka = TäytyyköLuodaUusiPakka(pakka);
 
-            
-
-            Korttipakka pakka = new Korttipakka(pakkojenMaara);
-
+            //Luodaan pelaajan- ja jakajankäsi
             Käsi pe = new Käsi();
             Käsi ja = new Käsi();
 
@@ -140,6 +142,10 @@ namespace BlackJack_test1
                     Console.WriteLine("Sinulla yli! Jakaja voitti.");
                     jakajanVoitot++;
                     PeliLoppui();// Tähän muutos!!!!?????
+                }
+                else if (kasi.KadenArvo == 21)
+                {
+                    break;
                 }
             }
         }
@@ -243,7 +249,7 @@ namespace BlackJack_test1
             string komento = Console.ReadLine();
             if (komento.Equals("p", StringComparison.OrdinalIgnoreCase))
             {
-                KaynnistaPeli(Korttipakka.PakkojenMaara);
+                KaynnistaPeli();
             }
             else if (komento.Equals("l", StringComparison.OrdinalIgnoreCase))
             {
