@@ -146,6 +146,21 @@ namespace BlackJack_test1
 
         public static void JakajanVuoro(Käsi kasi, Käsi pelaajankasi, Korttipakka pakka)
         {
+            if (pelaajankasi.BlackJack && (kasi.KadenArvo == 10 || kasi.KadenArvo == 11))
+            {
+                Console.WriteLine("Jakaja ottaa kortin yhden kortin..");
+                System.Threading.Thread.Sleep(2000);
+                kasi.Kadenkortit.Add(pakka.otaKorttiPakasta());
+                kasi.OnkoBlackJack();
+                KumpiVoitti(pelaajankasi, kasi);
+                PeliLoppui();
+            }
+            else if (pelaajankasi.BlackJack && kasi.KadenArvo < 10)
+            {
+                System.Threading.Thread.Sleep(2000);
+                KumpiVoitti(pelaajankasi, kasi);
+                PeliLoppui();
+            }
 
             if (kasi.KadenArvo >= 17)
             {
@@ -195,7 +210,13 @@ namespace BlackJack_test1
         public static void KumpiVoitti(Käsi pe, Käsi ja)
         {
             System.Threading.Thread.Sleep(2000);
-            if (pe.KadenArvo > ja.KadenArvo)
+
+            if (pe.BlackJack && ja.BlackJack)
+            {
+                Console.WriteLine("Molemmilla BlackJack! Tasapeli!");
+                tasapelit++;
+            }
+            else if (pe.KadenArvo > ja.KadenArvo)
             {
                 Console.WriteLine("Sinä voitit! Onneksi olkoon!");
                 pelaajanVoitot++;
@@ -263,6 +284,7 @@ namespace BlackJack_test1
             KumpiVoitti(pelaaja, jakaja);
             PeliLoppui();
         }
+
         //SPLITTAUS!!!
         public static void Splittaa(Käsi pe, Käsi ja, Korttipakka pakka)
         {
