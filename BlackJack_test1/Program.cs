@@ -60,7 +60,7 @@ namespace BlackJack_test1
             System.Threading.Thread.Sleep(2000);
             pe.Kadenkortit.Add(pakka.otaKorttiPakasta());
 
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Jakajan kortti: ");
             System.Threading.Thread.Sleep(2000);
             ja.Kadenkortit.Add(pakka.otaKorttiPakasta());
@@ -86,9 +86,14 @@ namespace BlackJack_test1
             //Tarkistetaan tarviiko muuttaa Ässiä Ykkösiksi
             Käsi.TarkistaJaMuutaAssatYkkosiksi(pe);
             Käsi.TarkistaJaMuutaAssatYkkosiksi(ja);
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Sinulla on " + pe.KadenArvo);
             System.Threading.Thread.Sleep(1000);
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Jakajalla on " + ja.KadenArvo);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
 
             HaluatkoTuplata(pe, ja, pakka); //Pelaajan vuoro/Tuplaus
@@ -142,16 +147,21 @@ namespace BlackJack_test1
                     continue;
                 }
 
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("Sinun kortti: ");
                 System.Threading.Thread.Sleep(2000);
                 kasi.Kadenkortit.Add(pakka.otaKorttiPakasta());
                 Käsi.TarkistaJaMuutaAssatYkkosiksi(kasi);
                 System.Threading.Thread.Sleep(2000);
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Sinulla on " + kasi.KadenArvo);
 
                 if (kasi.KadenArvo > 21)
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Sinulla yli! Jakaja voitti.");
+                    Console.ForegroundColor = ConsoleColor.White;
+
                     jakajanVoitot++;
                     PeliLoppui();// Tähän muutos!!!!?????
                 }
@@ -166,9 +176,11 @@ namespace BlackJack_test1
         {
             if (pelaajankasi.BlackJack && (kasi.KadenArvo == 10 || kasi.KadenArvo == 11))
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("Jakaja ottaa kortin yhden kortin..");
                 System.Threading.Thread.Sleep(2000);
                 kasi.Kadenkortit.Add(pakka.otaKorttiPakasta());
+                Console.ForegroundColor = ConsoleColor.White;
                 kasi.OnkoBlackJack();
                 KumpiVoitti(pelaajankasi, kasi);
                 PeliLoppui();
@@ -188,21 +200,28 @@ namespace BlackJack_test1
             {
                 while (kasi.KadenArvo < 17)
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("Jakaja ottaa kortin..");
                     System.Threading.Thread.Sleep(2000);
                     kasi.Kadenkortit.Add(pakka.otaKorttiPakasta());
                     System.Threading.Thread.Sleep(2000);
-
+                    
                     kasi.OnkoBlackJack();
                     if (kasi.BlackJack == true && pelaajankasi.BlackJack == true)
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Jakajalla myös BlackJack! Tasapeli.");
+                        Console.ForegroundColor = ConsoleColor.White;
+
                         tasapelit++;
                         PeliLoppui();
                     }
                     else if (kasi.BlackJack == true && pelaajankasi.BlackJack == false)
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("Jakajalla on BlackJack! Sinä hävisit.");
+                        Console.ForegroundColor = ConsoleColor.White;
+
                         jakajanVoitot++;
                         PeliLoppui();
                     }
@@ -214,10 +233,15 @@ namespace BlackJack_test1
 
                     Käsi.TarkistaJaMuutaAssatYkkosiksi(kasi);
                     Console.WriteLine("Jakajalla on " + kasi.KadenArvo);
+                    Console.ForegroundColor = ConsoleColor.White;
 
                     if (kasi.KadenArvo > 21)
                     {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+
                         Console.WriteLine("Jakaja yli! Sina Voitit!");
+                        Console.ForegroundColor = ConsoleColor.White;
+
                         pelaajanVoitot++;
                         PeliLoppui();
                     }
@@ -227,7 +251,9 @@ namespace BlackJack_test1
 
         public static void KumpiVoitti(Käsi pe, Käsi ja)
         {
+            Console.WriteLine();
             System.Threading.Thread.Sleep(2000);
+            Console.ForegroundColor = ConsoleColor.Yellow;
 
             if (pe.BlackJack && ja.BlackJack)
             {
@@ -249,13 +275,23 @@ namespace BlackJack_test1
                 Console.WriteLine("Tasapeli!");
                 tasapelit++;
             }
+            Console.ForegroundColor = ConsoleColor.White;
+
         }
 
         public static void PeliLoppui()
         {
             Console.WriteLine();
             Console.WriteLine("Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli");
-            Console.WriteLine("Pelaajan voitot: " + pelaajanVoitot + "\tJakajan voitot: " + jakajanVoitot + "\tTasapelit: " + tasapelit);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Pelaajan voitot: " + pelaajanVoitot);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("\tJakajan voitot: " + jakajanVoitot);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("\tTasapelit: " + tasapelit);
+            Console.ForegroundColor = ConsoleColor.White;
+
+            //Console.WriteLine("Pelaajan voitot: " + pelaajanVoitot + "\tJakajan voitot: " + jakajanVoitot + "\tTasapelit: " + tasapelit);
 
             UusiKomento:
             string komento = Console.ReadLine();
@@ -286,12 +322,15 @@ namespace BlackJack_test1
 
         public static void Tuplaus(Käsi pelaaja, Käsi jakaja, Korttipakka pakka)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Tuplaus:\nSinun kortti: ");
             System.Threading.Thread.Sleep(2000);
             pelaaja.Kadenkortit.Add(pakka.otaKorttiPakasta());
             System.Threading.Thread.Sleep(2000);
+            
             Käsi.TarkistaJaMuutaAssatYkkosiksi(pelaaja);
-            Console.WriteLine("Sinulla on " + pelaaja.KadenArvo);
+            Console.WriteLine("Sinulla on " + pelaaja.KadenArvo + "\n");
+            Console.ForegroundColor = ConsoleColor.White;
             if (pelaaja.KadenArvo > 21)
             {
                 Console.WriteLine("Sinulla yli! Jakaja voitti.");
