@@ -263,6 +263,6 @@ __pycache__/
 *.pyc
 
 # Setup kansio
-/Setup
+
 /BlackJack_test1/obj
 /BlackJack_test1/bin
