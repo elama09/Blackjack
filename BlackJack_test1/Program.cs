@@ -6,15 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BlackJack_test1
-{ // SPLIT!!!! PANOKSET!!!! RAHAT!!!!
-
-    //public static Bitmap Crop(this Bitmap b, Rectangle r)
-    //{
-        
-    //}
+{ // SPLIT!!!! PANOKSET!!!! RAHAT!!!! KUVAT!!!!
 
     public class Program
     {
+
         public static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
