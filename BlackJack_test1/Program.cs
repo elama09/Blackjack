@@ -14,7 +14,9 @@ namespace BlackJack_test1
         public static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("*****Tervetuloa pelaamaan BlackJack-pelia!*****\n");
+            Console.ForegroundColor = ConsoleColor.White;
             PelinToiminnot.KaynnistaPeli();
         }
     }
@@ -52,17 +54,25 @@ namespace BlackJack_test1
 
             //Otetaan kaksi korttia molemmille pakasta
             Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Sinun kortti: ");
             System.Threading.Thread.Sleep(2000);
             pe.Kadenkortit.Add(pakka.otaKorttiPakasta());
+
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Jakajan kortti: ");
             System.Threading.Thread.Sleep(2000);
             ja.Kadenkortit.Add(pakka.otaKorttiPakasta());
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Sinun kortti: ");
             System.Threading.Thread.Sleep(2000);
             pe.Kadenkortit.Add(pakka.otaKorttiPakasta());
             Console.WriteLine();
             System.Threading.Thread.Sleep(2000);
+            Console.ForegroundColor = ConsoleColor.White;
+
 
             pe.OnkoBlackJack();
             if (pe.BlackJack)
