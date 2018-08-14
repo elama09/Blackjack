@@ -90,6 +90,7 @@ namespace BlackJack_test1
             //Kumpi voitti tarkistus
             KumpiVoitti(pe, ja);
 
+            //Pelinlopetus
             PeliLoppui();
         }
         public static void HaluatkoTuplata(Käsi pe, Käsi ja, Korttipakka pakka)
