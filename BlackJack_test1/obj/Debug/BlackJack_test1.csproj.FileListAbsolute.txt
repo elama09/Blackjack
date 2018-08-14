@@ -1,7 +1,0 @@
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\bin\Debug\BlackJack_test1.exe.config
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\bin\Debug\BlackJack_test1.exe
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\bin\Debug\BlackJack_test1.pdb
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\obj\Debug\BlackJack_test1.csprojAssemblyReference.cache
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\obj\Debug\BlackJack_test1.csproj.CoreCompileInputs.cache
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\obj\Debug\BlackJack_test1.exe
-C:\Users\Romppu\source\repos\BlackJack_test1\BlackJack_test1\obj\Debug\BlackJack_test1.pdb
