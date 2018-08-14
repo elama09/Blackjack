@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace BlackJack_test1
 { // SPLIT!!!! PANOKSET!!!! RAHAT!!!!
+
+    //public static Bitmap Crop(this Bitmap b, Rectangle r)
+    //{
+        
+    //}
+
     public class Program
     {
         public static void Main(string[] args)
