@@ -318,9 +318,18 @@ namespace BlackJack_test1
 
         public static int Montapakkaa()
         {
-            Console.WriteLine("Kuinka monella pakalla haluat pelata? ");
-            int pakkojenMaara = int.Parse(Console.ReadLine());
-            return pakkojenMaara;
+            Uusiksi:
+            Console.WriteLine("Kuinka monella pakalla haluat pelata? (1-10)");
+            bool successfullyParsed = int.TryParse(Console.ReadLine(), out int pakkojenMaara);
+            if (successfullyParsed == true && pakkojenMaara < 11 && pakkojenMaara > 0)
+            {
+                return pakkojenMaara;
+            }
+            else
+            {
+                Console.WriteLine("Ei onnistu. Syötä haluamasi pakkojen määrä 1-10\n");
+                goto Uusiksi;
+            }
         }
 
         public static void Tuplaus(Käsi pelaaja, Käsi jakaja, Korttipakka pakka)
