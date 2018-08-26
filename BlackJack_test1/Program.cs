@@ -37,8 +37,11 @@ namespace BlackJack_test1
             }
             else if (p.PakkaList.Count < (Korttipakka.PakkojenMaara * 52 / 5))
             {
-                Console.WriteLine("\nKorttipakka melkein lopussa.. Sekoitetaan pakka..\n");
-                pakka = new Korttipakka(Montapakkaa());
+                Console.WriteLine("\nKorttipakka loppumassa.. Sekoitetaan pakka..\n");
+                System.Threading.Thread.Sleep(2000);
+                //Halutaanko että sekoitetaan samoilla pakkojen määrällä, Vai kysytään uusiksi monta pakkaa laitetaan..?
+                //pakka = new Korttipakka(Montapakkaa());
+                pakka = new Korttipakka(Korttipakka.PakkojenMaara);
                 return pakka;
             }
             return p;
@@ -238,7 +241,7 @@ namespace BlackJack_test1
                     if (kasi.KadenArvo > 21)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-
+                        Console.WriteLine();
                         Console.WriteLine("Jakaja yli! Sina Voitit!");
                         Console.ForegroundColor = ConsoleColor.White;
 
