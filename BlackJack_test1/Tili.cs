@@ -14,10 +14,10 @@ namespace BlackJack_test1
         public Tili()
         {
             Console.Write("Paljonko laitetaan rahaa pelitilille? ");
-            int summa = int.Parse(Console.ReadLine());
+            int summa = int.TryParse(Console.ReadLine(), out summa) ? summa : 0;
             if (summa < 1)
             {
-                Console.WriteLine("Liian pieni pelisumma, oletuksena siirretään 50€");
+                Console.WriteLine("Ei onnistu.. Oletuksena siirretään 50€");
                 Rahat = 50;
             }
             else
@@ -30,29 +30,27 @@ namespace BlackJack_test1
         {
             // Todo exception handling
             Console.Write("Paljonko haluat panostaa seuraavaan käteen? ");
-            int summa = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                int summa = int.TryParse(Console.ReadLine(), out summa) ? summa : 0;
 
-            while (int.TryParse(Console.ReadLine(), out int res))
-            {
-
-            }
-            
-            
-            if (summa <= Rahat)
-            {
-                Rahat -= summa;
-                NykyinenPanostus = summa;
-            }
-            else
-            {
-                Console.WriteLine("Sinulla ei ole riittävästi rahaa.");
+                if (summa <= Rahat && summa > 0)
+                {
+                    Rahat -= summa;
+                    NykyinenPanostus = summa;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Sinulla ei ole riittävästi rahaa, tai liian pieni panos, tai omituinen luku. Kokeile uusiksi..");
+                }
             }
         }
 
         public void MaksaVoitto()
         {
             Console.WriteLine("Voitit juuri " + NykyinenPanostus + "€");
-            Rahat += NykyinenPanostus;
+            Rahat += NykyinenPanostus * 2;
             NykyinenPanostus = 0;
         }
 
@@ -61,9 +59,18 @@ namespace BlackJack_test1
             NykyinenPanostus = 0;
             if (Rahat <= 0)
             {
-                Console.WriteLine("Hävisit kaikki rahat!");
+                Console.WriteLine("Hävisit kaikki rahat! Moi Moi!");
                 // Todo game over
+                System.Threading.Thread.Sleep(3000);
+                Environment.Exit(0);
             }
+        }
+
+        public void Tasapeli()
+        {
+            Console.WriteLine("Rahat takaisin.");
+            Rahat += NykyinenPanostus;
+            NykyinenPanostus = 0;
         }
 
         public void PanoksenTuplaus()
@@ -78,6 +85,28 @@ namespace BlackJack_test1
                 NykyinenPanostus *= 2;
                 Console.WriteLine("Panos tuplattu. Uusi panos " + NykyinenPanostus + "€");
             }
+        }
+
+        public void LisääRahaaTilille()
+        {
+            Console.Write("Kuinka paljon rahaa haluat siirtää pelitilillesi? ");
+            while (true)
+            {
+                int summa = int.TryParse(Console.ReadLine(), out summa) ? summa : 0;
+                if (summa > 0)
+                {
+                    Rahat += summa;
+                }
+                else
+                    Console.WriteLine("Omituinen luku tai negatiivinen luku, kokeile uusiksi..");
+            }
+        }
+
+        public void SuperVoitto()
+        {
+            Console.WriteLine("Onneksi olkoon! Sait supervoiton! Panoksesi vielä 50 kertaistetaan!");
+            Rahat += NykyinenPanostus * 100;
+            NykyinenPanostus = 0;
         }
 
     }
