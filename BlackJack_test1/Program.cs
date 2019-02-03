@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BlackJack_test1
-{ // SPLIT!!!! PANOKSET!!!! RAHAT!!!! KUVAT!!!!
+{ // SPLIT!!!! KUVAT!!!! SUPERVOITOT! 
 
     public class Program
     {
@@ -51,8 +51,7 @@ namespace BlackJack_test1
         {
             //Luodaan pelitili
             tili = tili == null ? new Tili() : tili;
-            //tili == null ? tili = new Tili() : tili = null;
-            //Tili tili = new Tili();
+
             //Luodaan uusi pakka / tai jos liian vähän kortteja
             pakka = TäytyyköLuodaUusiPakka(pakka);
             tili.LaitaPanos();
@@ -309,6 +308,8 @@ namespace BlackJack_test1
 
         public static void PeliLoppui()
         {
+            //Supervoitto
+
             Console.WriteLine();
             Console.WriteLine("Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli");
             Console.ForegroundColor = ConsoleColor.Green;
