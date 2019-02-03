@@ -14,14 +14,14 @@ namespace BlackJack_test1
         public List<Kortti> Kadenkortit { get; set; }
         public bool BlackJack
         {
-            get { return _blackjack;}
+            get { return _blackjack; }
         }
         public Käsi()
         {
             KadenArvo = 0;
             NykyKorttiArvo = 0;
             _blackjack = false;
-            
+
             Kadenkortit = new List<Kortti>();
         }
 
@@ -81,6 +81,11 @@ namespace BlackJack_test1
             {
                 _kadenArvo = value;
             }
+        }
+
+        public bool OnkoSuperVoitto()
+        {
+            return Kadenkortit.All(x => x.Arvo == 7);
         }
     }
 

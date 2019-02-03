@@ -106,7 +106,9 @@ namespace BlackJack_test1
                     Rahat += summa;
                 }
                 else
+                {
                     Console.WriteLine("Omituinen luku tai negatiivinen luku, kokeile uusiksi..");
+                }
             }
         }
 

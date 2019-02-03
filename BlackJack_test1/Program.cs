@@ -87,7 +87,7 @@ namespace BlackJack_test1
                 Console.WriteLine("Sinulla on BlackJack!");
                 JakajanVuoro(ja, pe, pakka, tili);
                 KumpiVoitti(pe, ja, tili);
-                PeliLoppui();
+                PeliLoppui(pe, tili);
             }
 
             //Tarkistetaan tarviiko muuttaa Ässiä Ykkösiksi
@@ -114,7 +114,7 @@ namespace BlackJack_test1
             //Kumpi voitti tarkistus
             KumpiVoitti(pe, ja, tili);
 
-            PeliLoppui();
+            PeliLoppui(pe, tili);
         }
         public static void HaluatkoTuplata(Käsi pe, Käsi ja, Korttipakka pakka, Tili tili)
         {
@@ -182,7 +182,7 @@ namespace BlackJack_test1
 
                     jakajanVoitot++;
                     tili.Häviö();
-                    PeliLoppui();// Tähän muutos!!!!?????
+                    PeliLoppui(kasi, tili);
                 }
                 else if (kasi.KadenArvo == 21)
                 {
@@ -202,13 +202,13 @@ namespace BlackJack_test1
                 Console.ForegroundColor = ConsoleColor.White;
                 kasi.OnkoBlackJack();
                 KumpiVoitti(pelaajankasi, kasi, tili);
-                PeliLoppui();
+                PeliLoppui(pelaajankasi, tili);
             }
             else if (pelaajankasi.BlackJack && kasi.KadenArvo < 10)
             {
                 System.Threading.Thread.Sleep(2000);
                 KumpiVoitti(pelaajankasi, kasi, tili);
-                PeliLoppui();
+                PeliLoppui(pelaajankasi, tili);
             }
 
             if (kasi.KadenArvo >= 17)
@@ -234,7 +234,7 @@ namespace BlackJack_test1
 
                         tasapelit++;
                         tili.Tasapeli();
-                        PeliLoppui();
+                        PeliLoppui(pelaajankasi, tili);
                     }
                     else if (kasi.BlackJack == true && pelaajankasi.BlackJack == false)
                     {
@@ -244,13 +244,13 @@ namespace BlackJack_test1
 
                         jakajanVoitot++;
                         tili.Häviö();
-                        PeliLoppui();
+                        PeliLoppui(pelaajankasi, tili);
                     }
                     else if (kasi.BlackJack == false && pelaajankasi.BlackJack == true)
                     {
                         pelaajanVoitot++;
-                        tili.MaksaVoitto();
-                        PeliLoppui();
+                        tili.MaksaVoittoBlackjack();
+                        PeliLoppui(pelaajankasi, tili);
                     }
 
                     Käsi.TarkistaJaMuutaAssatYkkosiksi(kasi);
@@ -266,7 +266,7 @@ namespace BlackJack_test1
 
                         pelaajanVoitot++;
                         tili.MaksaVoitto();
-                        PeliLoppui();
+                        PeliLoppui(pelaajankasi, tili);
                     }
                 }
             }
@@ -306,10 +306,13 @@ namespace BlackJack_test1
 
         }
 
-        public static void PeliLoppui()
+        public static void PeliLoppui(Käsi pe, Tili tili)
         {
             //Supervoitto
-
+            if (pe.OnkoSuperVoitto())
+            {
+                tili.SuperVoitto();
+            }
             Console.WriteLine();
             Console.WriteLine($"Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli\t\tPelimerkkisi: {tili.Rahat}€");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -373,11 +376,11 @@ namespace BlackJack_test1
             {
                 Console.WriteLine("Sinulla yli! Jakaja voitti.");
                 jakajanVoitot++;
-                PeliLoppui();
+                PeliLoppui(pelaaja, tili);
             }
             JakajanVuoro(jakaja, pelaaja, pakka, tili);
             KumpiVoitti(pelaaja, jakaja, tili);
-            PeliLoppui();
+            PeliLoppui(pelaaja, tili);
         }
 
         //SPLITTAUS!!!
