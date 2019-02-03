@@ -49,6 +49,9 @@
   <PropertyGroup>
     <ApplicationIcon>blackjack_hd_1052x526_1_1024x512_Yj9_icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>BlackJack_test1.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />

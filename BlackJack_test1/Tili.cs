@@ -49,8 +49,16 @@ namespace BlackJack_test1
 
         public void MaksaVoitto()
         {
-            Console.WriteLine("Voitit juuri " + NykyinenPanostus + "€");
+            Console.WriteLine("Voitit juuri " + NykyinenPanostus * 2 + "€");
             Rahat += NykyinenPanostus * 2;
+            NykyinenPanostus = 0;
+        }
+
+        public void MaksaVoittoBlackjack()
+        {
+            Console.WriteLine("Blackjack voitto, voitit juuri " + (int)Math.Round(NykyinenPanostus * 2.5) + "€");
+
+            Rahat += (int)Math.Round(NykyinenPanostus * 2.5);
             NykyinenPanostus = 0;
         }
 

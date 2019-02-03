@@ -311,7 +311,7 @@ namespace BlackJack_test1
             //Supervoitto
 
             Console.WriteLine();
-            Console.WriteLine("Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli");
+            Console.WriteLine($"Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli\t\tPelimerkkisi: {tili.Rahat}€");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Pelaajan voitot: " + pelaajanVoitot);
             Console.ForegroundColor = ConsoleColor.Cyan;
