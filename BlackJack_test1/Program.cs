@@ -51,7 +51,7 @@ namespace BlackJack_test1
         {
             //Luodaan pelitili
             tili = tili == null ? new Tili() : tili;
-
+            Utils_IO.TuoRahatTiedostosta();
             //Luodaan uusi pakka / tai jos liian vähän kortteja
             pakka = TäytyyköLuodaUusiPakka(pakka);
             tili.LaitaPanos();
