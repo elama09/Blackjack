@@ -8,7 +8,7 @@ namespace BlackJack_test1
 {
     public class Tili
     {
-        public int Rahat { get; set; }
+        public int? Rahat { get; set; }
         public int NykyinenPanostus { get; set; }
 
         public Tili()
@@ -26,7 +26,7 @@ namespace BlackJack_test1
             }
         }
 
-        public Tili(int summa)
+        public Tili(int? summa)
         {
             Rahat = summa;
         }

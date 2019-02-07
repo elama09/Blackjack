@@ -28,6 +28,7 @@ namespace BlackJack_test1
         public static int pelaajanVoitot = 0;
         public static int jakajanVoitot = 0;
         public static int tasapelit = 0;
+        public static bool ensimmäinenKierros = true;
 
         public static Korttipakka TäytyyköLuodaUusiPakka(Korttipakka p)
         {
@@ -49,9 +50,18 @@ namespace BlackJack_test1
         }
         public static void KaynnistaPeli() // Tai muuta tälläistä
         {
+            //Jos ensimmäinen kierros kysytään haluatko ladata tallennetun pelisi
+            if (ensimmäinenKierros)
+            {
+                int? ladatutRahat = Utils_IO.HaluatkoLadataPelitilanteenRahat();
+                if (ladatutRahat.HasValue)
+                {
+                    tili = new Tili(ladatutRahat);
+                }
+                ensimmäinenKierros = false;
+            }
             //Luodaan pelitili
             tili = tili == null ? new Tili() : tili;
-            Utils_IO.TuoRahatTiedostosta();
             //Luodaan uusi pakka / tai jos liian vähän kortteja
             pakka = TäytyyköLuodaUusiPakka(pakka);
             tili.LaitaPanos();
@@ -314,7 +324,9 @@ namespace BlackJack_test1
                 tili.SuperVoitto();
             }
             Console.WriteLine();
-            Console.WriteLine($"Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli\t\tPelimerkkisi: {tili.Rahat}€");
+            Console.WriteLine($"Peli loppui, mitä haluat tehdä seuraavaksi?\nP = Pelaa uudelleen\tL = Lopeta peli\t\tT = Tallenna rahat & Lopeta\tD=Tuhoa edellinen pelitallennus");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Pelimerkkisi: {tili.Rahat}€");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Pelaajan voitot: " + pelaajanVoitot);
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -337,6 +349,19 @@ namespace BlackJack_test1
                 Console.WriteLine("Kiitos pelaamisesta! Tervetuloa uudelleen pelaamaan!\nMoi Moi!");
                 System.Threading.Thread.Sleep(3000);
                 Environment.Exit(0);
+            }
+            else if (komento.Equals("t", StringComparison.OrdinalIgnoreCase))
+            {
+                Utils_IO.VieRahatTiedostoon(tili);
+                Console.WriteLine("Kiitos pelaamisesta! Tervetuloa uudelleen pelaamaan!\nMoi Moi!");
+                System.Threading.Thread.Sleep(3000);
+                Environment.Exit(0);
+            }
+            else if (komento.Equals("d", StringComparison.OrdinalIgnoreCase))
+            {
+                Utils_IO.TuhoaTiedosto();
+                Console.WriteLine("Tallennus tuhottu, mitä seuraavaksi?");
+                goto UusiKomento;
             }
             else
             {
