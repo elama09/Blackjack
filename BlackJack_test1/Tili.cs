@@ -17,8 +17,13 @@ namespace BlackJack_test1
             int summa = int.TryParse(Console.ReadLine(), out summa) ? summa : 0;
             if (summa < 1)
             {
-                Console.WriteLine("Ei onnistu.. Oletuksena siirretään 50€");
-                Rahat = 50;
+                Console.WriteLine("Ei onnistu.. Siirretään 100");
+                Rahat = 100;
+            }
+            else if (summa > 1000)
+            {
+                Console.WriteLine("Luuletko olevasi rikas...? Siirretään 1000");
+                Rahat = 1000;
             }
             else
             {
