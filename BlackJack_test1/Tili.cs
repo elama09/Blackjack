@@ -26,6 +26,11 @@ namespace BlackJack_test1
             }
         }
 
+        public Tili(int summa)
+        {
+            Rahat = summa;
+        }
+
         public void LaitaPanos()
         {
             // Todo exception handling
