@@ -48,7 +48,7 @@ namespace BlackJack_test1
             }
             return p;
         }
-        public static void KaynnistaPeli() // Tai muuta tälläistä
+        public static void KaynnistaPeli()
         {
             //Jos ensimmäinen kierros kysytään haluatko ladata tallennetun pelisi
             if (ensimmäinenKierros)
