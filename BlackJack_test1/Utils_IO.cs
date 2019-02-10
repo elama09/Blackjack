@@ -35,12 +35,14 @@ namespace BlackJack_test1
             }
         }
 
-        public static void VieRahatTiedostoon(Tili tili)
+        public static void VieRahatTiedostoon(Tili tili, int pe, int ja, int ta)
         {
-            string encrypted = EncryptString(tili.Rahat.ToString(), salasana);
+            string encryptedRahat = EncryptString(tili.Rahat.ToString(), salasana);
+            string encryptedVoitot = EncryptString($"{pe};{ja};{ta}", salasana);
             string path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             var writer = File.CreateText(Path.Combine(path, filename));
-            writer.Write(encrypted);
+            writer.WriteLine(encryptedRahat);
+            writer.Write(encryptedVoitot);
             writer.Flush();
             Console.WriteLine("Tallennus valmis!");
         }
@@ -51,10 +53,17 @@ namespace BlackJack_test1
 
             if (File.Exists(Path.Combine(path, filename)))
             {
-                string cryptedFileText = File.ReadAllText(Path.Combine(path, filename));
-                string decryptedText = DecryptString(cryptedFileText, salasana);
-                Console.WriteLine($"Ladattu edellisestä tallennuksesta: {decryptedText} pelimerkkiä");
-                return int.Parse(decryptedText);
+                string[] cryptedKaikkiRivit = File.ReadAllLines(Path.Combine(path, filename));
+                string decryptedRahat = DecryptString(cryptedKaikkiRivit[0], salasana);
+                string decryptedVoitot = DecryptString(cryptedKaikkiRivit[1], salasana);
+                string[] splitattuVoitot = decryptedVoitot.Split(';');
+                PelinToiminnot.AktivoiLadatutVoitot(int.Parse(splitattuVoitot[0]), int.Parse(splitattuVoitot[1]), int.Parse(splitattuVoitot[2]));
+
+                //string cryptedFileText = File.ReadAllText(Path.Combine(path, filename));
+                //string decryptedText = DecryptString(cryptedFileText, salasana);
+                Console.WriteLine($"Ladattu edellisestä tallennuksesta: {decryptedRahat} pelimerkkiä");
+                Console.WriteLine($"Ladattu pelitilanne: Pelaajanvoitot {splitattuVoitot[0]}, Jakajanvoitot {splitattuVoitot[1]}, Tasapelit {splitattuVoitot[2]}");
+                return int.Parse(decryptedRahat);
             }
             else
             {
