@@ -352,7 +352,7 @@ namespace BlackJack_test1
             }
             else if (komento.Equals("t", StringComparison.OrdinalIgnoreCase))
             {
-                Utils_IO.VieRahatTiedostoon(tili);
+                Utils_IO.VieRahatTiedostoon(tili, pelaajanVoitot, jakajanVoitot, tasapelit);
                 Console.WriteLine("Kiitos pelaamisesta! Tervetuloa uudelleen pelaamaan!\nMoi Moi!");
                 System.Threading.Thread.Sleep(3000);
                 Environment.Exit(0);
@@ -483,6 +483,13 @@ namespace BlackJack_test1
 
 
 
+        }
+
+        public static void AktivoiLadatutVoitot(int pelaaja, int jakaja, int tasapeli)
+        {
+            pelaajanVoitot = pelaaja;
+            jakajanVoitot = jakaja;
+            tasapelit = tasapeli;
         }
     }
 
