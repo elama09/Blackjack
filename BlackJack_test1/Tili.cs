@@ -8,7 +8,7 @@ namespace BlackJack_test1
 {
     public class Tili
     {
-        public int Rahat { get; set; }
+        public int? Rahat { get; set; }
         public int NykyinenPanostus { get; set; }
 
         public Tili()
@@ -17,13 +17,23 @@ namespace BlackJack_test1
             int summa = int.TryParse(Console.ReadLine(), out summa) ? summa : 0;
             if (summa < 1)
             {
-                Console.WriteLine("Ei onnistu.. Oletuksena siirretään 50€");
-                Rahat = 50;
+                Console.WriteLine("Ei onnistu.. Siirretään 100");
+                Rahat = 100;
+            }
+            else if (summa > 1000)
+            {
+                Console.WriteLine("Luuletko olevasi rikas...? Siirretään 1000");
+                Rahat = 1000;
             }
             else
             {
                 Rahat = summa;
             }
+        }
+
+        public Tili(int? summa)
+        {
+            Rahat = summa;
         }
 
         public void LaitaPanos()
@@ -49,8 +59,16 @@ namespace BlackJack_test1
 
         public void MaksaVoitto()
         {
-            Console.WriteLine("Voitit juuri " + NykyinenPanostus + "€");
+            Console.WriteLine("Voitit juuri " + NykyinenPanostus * 2 + "€");
             Rahat += NykyinenPanostus * 2;
+            NykyinenPanostus = 0;
+        }
+
+        public void MaksaVoittoBlackjack()
+        {
+            Console.WriteLine("Blackjack voitto, voitit juuri " + (int)Math.Round(NykyinenPanostus * 2.5) + "€");
+
+            Rahat += (int)Math.Round(NykyinenPanostus * 2.5);
             NykyinenPanostus = 0;
         }
 
@@ -98,7 +116,9 @@ namespace BlackJack_test1
                     Rahat += summa;
                 }
                 else
+                {
                     Console.WriteLine("Omituinen luku tai negatiivinen luku, kokeile uusiksi..");
+                }
             }
         }
 
